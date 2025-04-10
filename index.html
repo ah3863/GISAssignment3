@@ -1,99 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sex and the City Iconic Landmarks!</title>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-    <div id="sidebar-container">
-        <div id="title">Sex and the City Landmark Map</div>
-        <p> Crowdsourced some data in a Google sheet, converted it to JSON data, and used it to make a marker map of
-            favorite real places in NYC from SATC.</p>
-        <p><strong>Click a marker to see the name of the place and which iconic character was there! </strong></p>
-        <p>The markers are color-coded by character:</p>
-        <div id="legend">
-            <div class="legend-item">
-                <div class="legend-color" style="background-color: red;"></div>
-                <span>Carrie</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background-color: green;"></div>
-                <span>Miranda</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background-color: blue;"></div>
-                <span>Charlotte</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background-color: yellow;"></div>
-                <span>Samantha</span>
-            </div>
-        </div>
-    </div>
-
-    <div id="map-container"></div>
-
-    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
-    <script>
-        // Add your Mapbox access token here
-        mapboxgl.accessToken = 'YOUR_ACCESS_TOKEN_HERE'; // Replace with your Mapbox access token
-
-        // Initialize the map
-        const map = new mapboxgl.Map({
-            container: 'map-container', // The id of the div where the map will appear
-            style: 'mapbox://styles/mapbox/streets-v11', // Choose the style of your map
-            center: [-73.935242, 40.730610], // Set the initial map center (longitude, latitude)
-            zoom: 12 // Set the zoom level
-        });
-
-        // Sample data - Replace this with your actual data from data.js
-        const data = [
-            {
-                "name": "Central Perk",
-                "description": "Carrie Bradshaw’s favorite coffee spot!",
-                "coordinates": [-73.983200, 40.736500],
-                "character": "Carrie"
-            },
-            {
-                "name": "The Plaza Hotel",
-                "description": "Where Carrie met Mr. Big.",
-                "coordinates": [-73.974112, 40.764712],
-                "character": "Carrie"
-            },
-            // Add other landmarks here
-        ];
-
-        // Function to determine marker color based on character
-        function getColor(character) {
-            switch (character) {
-                case 'Carrie':
-                    return 'red';
-                case 'Miranda':
-                    return 'green';
-                case 'Charlotte':
-                    return 'blue';
-                case 'Samantha':
-                    return 'yellow';
-                default:
-                    return 'gray';
-            }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sex and the City Locations</title>
+    <style>
+        #map {
+            height: 100%;
+            width: 100%;
         }
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
 
-        // Add markers for each location in the data array
-        data.forEach(location => {
-            const marker = new mapboxgl.Marker({ color: getColor(location.character) })
-                .setLngLat(location.coordinates)
-                .setPopup(new mapboxgl.Popup().setHTML(`<h3>${location.name}</h3><p>${location.description}</p>`))
-                .addTo(map);
-        });
-    </script>
-    <script src="data.js"></script>
-    <script src="scripts.js"></script>
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script>
+// Initialize the map
+var map = L.map('map').setView([40.735, -73.990], 13); // Default center: somewhere near NYC
+
+// Set the tile layer for the map (OpenStreetMap)
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+// Define the SATC data
+const SATCData = [
+    {
+        "location_name": "Carrie Bradshaw’s apartment (theoretical)",
+        "character": "Carrie",
+        "episode": "Season: 1. Episode: 1 ",
+        "description": "Overflowing with Vogue magazines and piles of clothing, it’s the place where we watch Carrie contemplate while typing away on her computer, chat with the girls, or wind down after one of her many dates. While her address is technically listed as 245 East 73rd Street, the building and its iconic staircase can actually be found in the West Village.",
+        "longitude": "[-73.95817, 40.76961]"
+    },
+    {
+        "location_name": "Carrie Bradshaw’s apartment (filming location)",
+        "character": "Carrie",
+        "episode": "Season: 1. Episode: 1 ",
+        "description": "The iconic staircase where Carrie was often spotted smoking a cigarette or losing Aidan's dog: the first three seasons were filmed at 64 Perry Street, but they eventually moved to 66, right next door.",
+        "longitude": "[-74.00376, 40.73535]"
+    },
+    {
+        "location_name": "Louis K. Meisel Gallery",
+        "character": "Charlotte",
+        "episode": "Season: 1. Episode: 6",
+        "description": "Charlotte works in the art world, specifically at the Louis K. Meisel Gallery, which earned a reputation for its groundbreaking contributions to the photorealist movement.",
+        "longitude": "[-74.00052, 40.72568]"
+    },
+    {
+        "location_name": "The Bus Stop",
+        "character": "Carrie",
+        "episode": "Season: 1. Episode: 6",
+        "description": "Carrie is seen walking the streets of New York in a massive tutu, while a bus passes by adorned with a photo of her striking a rather suggestive pose.",
+        "longitude": "[-74.00686, 40.73510]"
+    },
+    {
+        "location_name": "St. Patrick’s Cathedral",
+        "character": "Carrie",
+        "episode": "Season: 1. Episode: 12",
+        "description": "Carrie watches Mr. Big and his mother exit St. Patrick’s Cathedral after attending mass. The cathedral is a stunning example of neo-Gothic architecture.",
+        "longitude": "[-73.97657, 40.75869]"
+    },
+    {
+        "location_name": "Yankee Stadium",
+        "character": "Carrie",
+        "episode": "Season: 2. Episode: 1",
+        "description": "After her breakup with Big, Carrie’s friends take her to a baseball game at Yankee Stadium to cheer her up.",
+        "longitude": "[-73.92764, 40.82925]"
+    },
+    {
+        "location_name": "The Plaza Hotel",
+        "character": "Carrie",
+        "episode": "Season: 2. Episode: 18",
+        "description": "Carrie sees Mr. Big near The Plaza Hotel, leaving his engagement party with Natasha, marking a poignant exit from their relationship.",
+        "longitude": "[-73.97388, 40.76445]"
+    },
+    {
+        "location_name": "Staten Island Ferry",
+        "character": "Charlotte",
+        "episode": "Season: 3. Episode: 1",
+        "description": "Carrie and her friends take the Staten Island Ferry to attend a firefighter competition. Carrie meets politician Bill Kelley here.",
+        "longitude": "[-74.01305, 40.70093]"
+    },
+    {
+        "location_name": "Magnolia Bakery",
+        "character": "Miranda",
+        "episode": "Season: 3. Episode: 5",
+        "description": "Miranda and Carrie enjoy cupcakes from Magnolia Bakery, which has since expanded worldwide.",
+        "longitude": "[-74.00498, 40.73589]"
+    },
+    {
+        "location_name": "Grace Episcopal Church",
+        "character": "Charlotte",
+        "episode": "Season: 3. Episode: 12",
+        "description": "Charlotte marries Trey at Grace Episcopal Church, a Gothic-style church in the heart of Manhattan.",
+        "longitude": "[-73.99097, 40.73201]"
+    },
+    {
+        "location_name": "The Central Park Loeb Boathouse",
+        "character": "Carrie",
+        "episode": "Season: 3 Episode: 18",
+        "description": "Carrie and Mr. Big meet for lunch at the Central Park boathouse, but end up tumbling into the lake.",
+        "longitude": "[-73.96879, 40.77534]"
+    },
+    {
+        "location_name": "Soho House New York",
+        "character": "Samantha",
+        "episode": "Season: 6. Episode 10",
+        "description": "Samantha infiltrates the exclusive Soho House in the Meatpacking District.",
+        "longitude": "[-74.00588, 40.74062]"
+    },
+    {
+        "location_name": "Jefferson Market Garden",
+        "character": "Miranda",
+        "episode": "Season: 6. Episode: 14",
+        "description": "Miranda and Steve get married at Jefferson Market Garden, a small park in the West Village.",
+        "longitude": "[-73.99953, 40.73445]"
+    },
+    {
+        "location_name": "New York Public Library",
+        "character": "Carrie",
+        "episode": "SATC: The Movie",
+        "description": "Carrie plans her wedding at the New York Public Library, which is also where she confronts Big on her big day.",
+        "longitude": "[-73.98209, 40.75335]"
+    }
+];
+
+// Add the locations to the map
+SATCData.forEach(function(location) {
+    var coordinates = JSON.parse(location.longitude);
+    var popupContent = `
+        <strong>${location.location_name}</strong><br>
+        Character: ${location.character}<br>
+        Episode: ${location.episode}<br>
+        <p>${location.description}</p>
+    `;
+    
+    L.marker([coordinates[1], coordinates[0]]).addTo(map)
+        .bindPopup(popupContent);
+});
+</script>
+
 </body>
-
 </html>
