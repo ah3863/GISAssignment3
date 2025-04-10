@@ -12,12 +12,11 @@
 <body>
     <div id="sidebar-container">
         <div id="title">Sex and the City Landmark Map</div>
-        <p> crowdsourced some data in a google sheet, converted it to JSON data, and used it to make a marker map of
+        <p> Crowdsourced some data in a Google sheet, converted it to JSON data, and used it to make a marker map of
             favorite real places in NYC from SATC.</p>
         <p><strong>Click a marker to see the name of the place and which iconic character was there! </strong></p>
         <p>The markers are color-coded by character:</p>
         <div id="legend">
-    
             <div class="legend-item">
                 <div class="legend-color" style="background-color: red;"></div>
                 <span>Carrie</span>
@@ -25,7 +24,6 @@
             <div class="legend-item">
                 <div class="legend-color" style="background-color: green;"></div>
                 <span>Miranda</span>
-
             </div>
             <div class="legend-item">
                 <div class="legend-color" style="background-color: blue;"></div>
@@ -34,12 +32,66 @@
             <div class="legend-item">
                 <div class="legend-color" style="background-color: yellow;"></div>
                 <span>Samantha</span>
-
+            </div>
         </div>
     </div>
+
     <div id="map-container"></div>
 
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
+    <script>
+        // Add your Mapbox access token here
+        mapboxgl.accessToken = 'YOUR_ACCESS_TOKEN_HERE'; // Replace with your Mapbox access token
+
+        // Initialize the map
+        const map = new mapboxgl.Map({
+            container: 'map-container', // The id of the div where the map will appear
+            style: 'mapbox://styles/mapbox/streets-v11', // Choose the style of your map
+            center: [-73.935242, 40.730610], // Set the initial map center (longitude, latitude)
+            zoom: 12 // Set the zoom level
+        });
+
+        // Sample data - Replace this with your actual data from data.js
+        const data = [
+            {
+                "name": "Central Perk",
+                "description": "Carrie Bradshaw’s favorite coffee spot!",
+                "coordinates": [-73.983200, 40.736500],
+                "character": "Carrie"
+            },
+            {
+                "name": "The Plaza Hotel",
+                "description": "Where Carrie met Mr. Big.",
+                "coordinates": [-73.974112, 40.764712],
+                "character": "Carrie"
+            },
+            // Add other landmarks here
+        ];
+
+        // Function to determine marker color based on character
+        function getColor(character) {
+            switch (character) {
+                case 'Carrie':
+                    return 'red';
+                case 'Miranda':
+                    return 'green';
+                case 'Charlotte':
+                    return 'blue';
+                case 'Samantha':
+                    return 'yellow';
+                default:
+                    return 'gray';
+            }
+        }
+
+        // Add markers for each location in the data array
+        data.forEach(location => {
+            const marker = new mapboxgl.Marker({ color: getColor(location.character) })
+                .setLngLat(location.coordinates)
+                .setPopup(new mapboxgl.Popup().setHTML(`<h3>${location.name}</h3><p>${location.description}</p>`))
+                .addTo(map);
+        });
+    </script>
     <script src="data.js"></script>
     <script src="scripts.js"></script>
 </body>
