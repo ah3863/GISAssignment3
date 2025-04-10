@@ -16,6 +16,36 @@
     <div id="map"></div>
   </div>
 
+<body>
+    <div id="sidebar-container">
+        <div id="title">Sex and the City Iconic Landmarks!</div>
+        <p>We crowdsourced some data in a google sheet, converted it to JSON data, and used it to make a marker map of
+            everyone's favorite SATC spots.</p>
+        <p><strong>Click a marker to see the name of the place and which character it was a hotspot for.</strong></p>
+        <p>The markers are color-coded by character:</p>
+        <div id="legend">
+    
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: red;"></div>
+                <span>Carrie</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: blue;"></div>
+                <span>Charlotte</span>
+
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: green;"></div>
+                <span>Miranda</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: yellow;"></div>
+                <span>Samantha</span>
+
+        </div>
+    </div>
+    <div id="map-container"></div>
+  
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
   <script src="script.js"></script>
 </body>
