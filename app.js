@@ -10,7 +10,7 @@ const mapOptions = {
     container: 'map-container', // container ID
     center: [-73.99432, 40.71103], // starting position [lng, lat]. Note that lat must be set between -90 and 90
     zoom: 10.92, // starting zoom
-    // bearing: 29,
+    bearing: 29,
     style: 'mapbox://styles/mapbox/mineral-v12'
     // hash: true
 }
@@ -47,96 +47,86 @@ Louis K. Meisel Gallery
      .addTo(coolMap);
 
 The Bus Stop
- const marker3 = new mapboxgl.Marker(markerOptions)
+ const marker4 = new mapboxgl.Marker(markerOptions)
      .setLngLat([-74.00686, 40.73510])
      .addTo(coolMap);
 
 St. Patrick’s Cathedral
- const marker3 = new mapboxgl.Marker(markerOptions)
+ const marker5 = new mapboxgl.Marker(markerOptions)
      .setLngLat([-73.97657, 40.75869])
      .addTo(coolMap);
 
 Yankee Stadium
- const marker3 = new mapboxgl.Marker(markerOptions)
+ const marker6 = new mapboxgl.Marker(markerOptions)
      .setLngLat([-73.92764, 40.82925])
      .addTo(coolMap);
 
 The Plaza Hotel
- const marker3 = new mapboxgl.Marker(markerOptions)
+ const marker7 = new mapboxgl.Marker(markerOptions)
      .setLngLat([-73.97388, 40.76445])
      .addTo(coolMap);
 
 Staten Island Ferry
- const marker3 = new mapboxgl.Marker(markerOptions)
+ const marker8 = new mapboxgl.Marker(markerOptions)
      .setLngLat([-74.01305, 40.70093])
      .addTo(coolMap);
 
 Magnolia Bakery
-const marker3 = new mapboxgl.Marker(markerOptions)
+const marker9 = new mapboxgl.Marker(markerOptions)
      .setLngLat([-74.00498, 40.73589])
      .addTo(coolMap);
 
 Grace Episcopal Church
-const marker3 = new mapboxgl.Marker(markerOptions)
+const marker10 = new mapboxgl.Marker(markerOptions)
      .setLngLat([-73.99097, 40.73201])
      .addTo(coolMap);
 
 The Central Park Loeb Boathouse
-const marker3 = new mapboxgl.Marker(markerOptions)
+const marker11 = new mapboxgl.Marker(markerOptions)
      .setLngLat([-73.96879, 40.77534])
      .addTo(coolMap);
 
 Soho House New York
-const marker3 = new mapboxgl.Marker(markerOptions)
+const marker12 = new mapboxgl.Marker(markerOptions)
      .setLngLat([-74.00588, 40.74062])
      .addTo(coolMap);
 
 Jefferson Market Garden
-const marker3 = new mapboxgl.Marker(markerOptions)
+const marker13 = new mapboxgl.Marker(markerOptions)
      .setLngLat([-73.99953, 40.73445])
      .addTo(coolMap);
 
 New York Public Library
-const marker3 = new mapboxgl.Marker(markerOptions)
+const marker14 = new mapboxgl.Marker(markerOptions)
      .setLngLat([-73.98209, 40.75335])
      .addTo(coolMap);
 
 // now let's make a markers for our favorite SATC places
 
-pizzaData.forEach((record) => {
+SATCData.forEach((record) => {
     const popup = new mapboxgl.Popup({
         offset: 36,
     }).setText(
-        `${record.first_name}'s favorite pizza shop is ${record.pizza_shop}.`
+        `${description}.`
     );
 
     let programColor = '#ccc';
 
-    if (record.program === 'MUP') {
+    if (record.character === 'Miranda') {
         programColor = 'green'
     }
 
-    if (record.program === 'instructor') {
-        programColor = 'steelblue'
-    }
-
-    if (record.program === 'Journalism') {
+    if (record.character === 'Carrie') {
         programColor = 'red'
     }
 
-    if (record.program === 'Tandon') {
-        programColor = 'purple'
+    if (record.character === 'Charlotte') {
+        programColor = 'blue'
     }
 
-    if (record.program === 'MSPP') {
-        programColor = 'orange'
+    if (record.character === 'Samantha') {
+        programColor = 'yellow'
     }
-
-    if (record.program === 'MAUSP') {
-        programColor = 'black'
-    }
-
-
 
 
     new mapboxgl.Marker({
