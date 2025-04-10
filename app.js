@@ -1,4 +1,4 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoiYWgzODYzIiwiYSI6ImNtOWJud3p3YjBoanQyc29xeHVsbDE4YmEifQ.YNU_qv33YYjYGBtGimY-7w';
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWgzODYzIiwiYSI6ImNtOWJ2ZzJoMDBreHIyanBuYmFvb3lvam0ifQ.Zeg12vyxmHuz86vEocSGdw';
 
 const map = new mapboxgl.Map({
     container: 'map', // ID of the div where the map renders
