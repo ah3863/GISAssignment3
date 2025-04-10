@@ -4,49 +4,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SATC Locations</title>
+  <!-- Include Mapbox GL CSS -->
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="map-container">
-    <div id="sidebar-container">
-      <div id="title">Sex and the City Landmarks</div>
-      <p>Explore iconic filming locations from *Sex and the City*! Zoom, pan, and click markers for details.</p>
-    </div>
-    <div id="map"></div>
-  </div>
+  <div id="map" style="width: 100%; height: 600px;"></div>
 
-<body>
-    <div id="sidebar-container">
-        <div id="title">Sex and the City Iconic Landmarks!</div>
-        <p>I crowdsourced some data in a google sheet, converted it to JSON data, and used it to make a marker map of
-            everyone's favorite SATC spots.</p>
-        <p><strong>Click a marker to see the name of the place and when it was a hotspot on the show!</strong></p>
-        <p>The markers are color-coded by character:</p>
-        <div id="legend">
-    
-            <div class="legend-item">
-                <div class="legend-color" style="background-color: red;"></div>
-                <span>Carrie</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background-color: blue;"></div>
-                <span>Charlotte</span>
-
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background-color: green;"></div>
-                <span>Miranda</span>
-            </div>
-            <div class="legend-item">
-                <div class="legend-color" style="background-color: yellow;"></div>
-                <span>Samantha</span>
-
-        </div>
-    </div>
-    <div id="map-container"></div>
-  
+  <!-- Include Mapbox GL JS -->
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
-  <script src="script.js"></script>
+
+  <script>
+    // Your Mapbox access token
+    mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
+
+    // Initialize the map
+    var map = new mapboxgl.Map({
+      container: 'map', // ID of the container div
+      style: 'mapbox://styles/mapbox/streets-v11', // Style of the map
+      center: [-73.97657, 40.75869], // Default center (St. Patrick's Cathedral)
+      zoom: 12 // Zoom level
+    });
+
+    // Data: SATC locations
+    const SATCData = [
+      {
+        "location_name": "Carrie Bradshaw’s apartment (theoretical)",
+        "character": "Carrie",
+        "episode": "Season: 1. Episode: 1 ",
+        "description": "Overflowing with Vogue magazines and piles of clothing...",
+        "longitude": [-73.95817, 40.76961]
+      },
+      {
+        "location_name": "Carrie Bradshaw’s apartment (filming location)",
+        "character": "Carrie",
+        "episode": "Season: 1. Episode: 1 ",
+        "description": "The iconic staircase where Carrie was often spotted...",
+        "longitude": [-74.00376, 40.73535]
+      },
+      // Add more locations...
+    ];
+
+    // Loop through each location in SATCData and add a marker
+    SATCData.forEach(function(location) {
+      // Create a marker
+      new mapboxgl.Marker()
+        .setLngLat(location.longitude) // Longitude, Latitude
+        .setPopup(new mapboxgl.Popup().setHTML(
+          <h3>${location.location_name}</h3>
+          <p><strong>Character:</strong> ${location.character}</p>
+          <p><strong>Episode:</strong> ${location.episode}</p>
+          <p>${location.description}</p>
+        )) // Set the popup content
+        .addTo(map); // Add marker to map
+    });
+  </script>
 </body>
 </html>
