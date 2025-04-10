@@ -1,4 +1,5 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWgzODYzIiwiYSI6ImNtOWJ2ZzJoMDBreHIyanBuYmFvb3lvam0ifQ.Zeg12vyxmHuz86vEocSGdw'; // Replace with your Mapbox token
+
 var map = new mapboxgl.Map({
   container: 'map-container', // The ID of the div where the map will render
   style: 'mapbox://styles/mapbox/streets-v11', // Style of the map
