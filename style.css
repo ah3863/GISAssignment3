@@ -13,7 +13,7 @@ map-container {
     height: 100%;
 }
 
-sidebar-container {
+#sidebar-container {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -25,18 +25,18 @@ sidebar-container {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-title {
+#title {
     font-size: 24px;
     font-weight: bold;
 }
 
-.legend-item {
+#.legend-item {
     display: flex;
     align-items: center;
     margin-bottom: 5px;
 }
 
-.legend-color {
+#.legend-color {
     width: 20px;
     height: 20px;
     display: inline-block;
