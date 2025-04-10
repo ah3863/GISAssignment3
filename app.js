@@ -127,7 +127,7 @@ SATCData.forEach((location) => {
     if (location.character === 'Samantha') markerColor = 'yellow';
 
     new mapboxgl.Marker({ color: markerColor })
-        .setLngLat(location.longitude) // Longitude, Latitude
+        .setLngLat(location.coordinates) // Longitude, Latitude
         .setPopup(popup) // Attach popup
         .addTo(map);
 });
