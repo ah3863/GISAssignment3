@@ -110,28 +110,28 @@ SATCData.forEach((record) => {
         ${description}.
     );
 
-    let programColor = '#ccc';
+    let chartacterColor = '#ccc';
 
     if (record.character === 'Miranda') {
-        programColor = 'green'
+        chartacterColor = 'green'
     }
 
     if (record.character === 'Carrie') {
-        programColor = 'red'
+        chartacterColor = 'red'
     }
 
     if (record.character === 'Charlotte') {
-        programColor = 'blue'
+        chartacterColor = 'blue'
     }
 
     if (record.character === 'Samantha') {
-        programColor = 'yellow'
+        chartacterColor = 'yellow'
     }
 
 
     new mapboxgl.Marker({
         scale: 0.8,
-        color: programColor
+        color: chartacterColor
     })
         .setLngLat([record.longitude, record.latitude])
         .setPopup(popup)
