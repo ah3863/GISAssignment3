@@ -1,24 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sex and the City Map</title>
-    <!-- Include Mapbox CSS -->
-    <link
-      href="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css"
-      rel="stylesheet"
-    />
-    <!-- Link to your custom styles (optional) -->
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>Sex and the City Iconic Landmarks</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div id="map"></div>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.js'></script>
+    <script src='https://npmcdn.com/csv2geojson@latest/csv2geojson.js'></script>
+    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+</head>
 
-    <!-- Include Mapbox JS -->
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
-    <!-- Link to your custom JS (optional) -->
-    <script src="app.js"></script>
-  </body>
+<body>
+    <div id="header">
+        <h1>Sex and the City Iconic Landmarks</h1>
+        <p>Click on the markers to learn more about episode features and facts!</p>
+    </div>
+    <div id="layout-container">
+        <!-- Sidebar with text -->
+        <div id="sidebar">
+            <div id="text-overlay">
+                <div id="title"></div> <!-- Episode Name -->
+                <div id="episode-subtitle"></div> <!-- Subtitle -->
+                <div id="episode-description"></div> <!-- Description -->
+                <div id="episode-details"></div> <!-- Details -->
+                <img id="episode-image" src="" alt="" /> <!-- Episode Image -->
+                <p id ="episode-image-caption"></p> <!-- Image Caption -->
+            </div>
+        </div>
+
+        <!-- Map container -->
+        <div id="map-container">
+            <div id="map"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+
+
 </html>
-
