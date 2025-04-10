@@ -1,43 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset='utf-8' />
-    <title>Sex and the City Iconic Landmarks</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <link href='https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css' rel='stylesheet' />
-    <link rel="stylesheet" href="style.css" />
-    <script src='https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.js'></script>
-    <script src='https://npmcdn.com/csv2geojson@latest/csv2geojson.js'></script>
-    <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sex and the City Iconic Landmarks!</title>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="header">
-        <h1>Sex and the City Iconic Landmarks</h1>
-        <p>Click on the markers to learn more about episode features and facts!</p>
-    </div>
-    <div id="layout-container">
-        <!-- Sidebar with text -->
-        <div id="sidebar">
-            <div id="text-overlay">
-                <div id="title"></div> <!-- Episode Name -->
-                <div id="episode-subtitle"></div> <!-- Subtitle -->
-                <div id="episode-description"></div> <!-- Description -->
-                <div id="episode-details"></div> <!-- Details -->
-                <img id="episode-image" src="" alt="" /> <!-- Episode Image -->
-                <p id ="episode-image-caption"></p> <!-- Image Caption -->
+    <div id="sidebar-container">
+        <div id="title">Sex and the City Landmark Map</div>
+        <p> crowdsourced some data in a google sheet, converted it to JSON data, and used it to make a marker map of
+            favorite real places in NYC from SATC.</p>
+        <p><strong>Click a marker to see the name of the place and which iconic character was there! </strong></p>
+        <p>The markers are color-coded by character:</p>
+        <div id="legend">
+    
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: red;"></div>
+                <span>Carrie</span>
             </div>
-        </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: green;"></div>
+                <span>Miranda</span>
 
-        <!-- Map container -->
-        <div id="map-container">
-            <div id="map"></div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: blue;"></div>
+                <span>Charlotte</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: yellow;"></div>
+                <span>Samantha</span>
+
         </div>
     </div>
-    <script src="script.js"></script>
+    <div id="map-container"></div>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.10.0/mapbox-gl.js"></script>
+    <script src="data.js"></script>
+    <script src="scripts.js"></script>
 </body>
-
-
 
 </html>
