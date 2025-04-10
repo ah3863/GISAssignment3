@@ -1,7 +1,7 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWgzODYzIiwiYSI6ImNtOWJ2ZzJoMDBreHIyanBuYmFvb3lvam0ifQ.Zeg12vyxmHuz86vEocSGdw';
 
 const map = new mapboxgl.Map({
-    container: 'map', // ID of the div where the map renders
+    container: 'map-container', // ID of the div where the map renders
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [-73.97657, 40.75869], // Starting position [longitude, latitude]
     zoom: 12 // Starting zoom level
