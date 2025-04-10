@@ -11,7 +11,7 @@ const mapOptions = {
     center: [-73.99432, 40.71103], // starting position [lng, lat]. Note that lat must be set between -90 and 90
     zoom: 10.92, // starting zoom
     bearing: 29,
-    style: 'mapbox://styles/mapbox/mineral-v12'
+    style: 'mapbox://styles/mapbox/streets-v11'
     // hash: true
 }
 
